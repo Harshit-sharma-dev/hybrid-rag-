@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 import re
 
 # 🔹 DB connection (CHANGE PASSWORD + DB NAME)
-engine = create_engine("postgresql://postgres:2007@localhost:5432/postgres")
+engine = create_engine("postgresql://postgres:possword@localhost:5432/postgres")
 
 # 🔹 LLM function
 def ask_llama(prompt):
