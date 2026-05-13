@@ -5,5 +5,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Hello from GitHub Actions"
-hii 
-i am this side harshit sharma i make the new repo and i learn in that where i learn that git push origin , for the push the code , git commit 
+      - run: echo "This is a test workflow"
+      - run: echo "You can add more steps here to run your tests"
+      - run: echo "For example, you can run a Python script like this:"
+      - run: python test/cleanpipelilne.py
+      - run: echo "Tests completed"
+      
