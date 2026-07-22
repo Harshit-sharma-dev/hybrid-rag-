@@ -66,33 +66,42 @@ python -m test.main
 
 ## 🏗️ Architecture
 
-### Components
+### Query Processing Pipeline
 
 ```
-┌─────────────────────────────────────────┐
-│         User Query                      │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│  smart_router.py                        │
-│  (Qwen 7B Route Detection)              │
-│  ↓ Returns: search|summary|analysis     │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│  tool_calling.py                        │
-│  ├─ BM25 Search (CPU efficient)         │
-│  ├─ DuckDB Analytics                    │
-│  └─ Generate Summary (Qwen 7B)          │
-└────────────┬────────────────────────────┘
-             │
-             ▼
-┌─────────────────────────────────────────┐
-│         Final Answer                    │
-└─────────────────────────────────────────┘
+User Query
+   ↓
+[1] Smart Router (Rule + LLM Fallback)
+   ↓ Returns: "semantic" | "analytical" | "math" | "hybrid"
+   ↓
+[2] Parallel Tool Executor
+   ├→ Pinecone (Vector/Semantic) → Text Chunks
+   ├→ DuckDB (Structured/Analytical) → Table Rows
+   └→ Calculator (Math) → Exact Number
+   ↓ (Runs concurrently, not sequentially)
+   ↓
+[3] Context Pruner & Validator (Code-only)
+   ↓ Merges results, removes duplicates, validates schema
+   ↓
+[4] LLM Synthesizer (ONE CALL ONLY)
+   ↓ Strict prompt: "Use ONLY provided context. No hallucination."
+   ↓
+Final Answer + Trace Log
 ```
+
+### System Design
+
+**Three-Tier Routing:**
+- **Tier 1:** Smart Router (Rule-based + LLM fallback) decides query type
+- **Tier 2:** Parallel execution of tools (Pinecone semantic search, DuckDB analytics, Calculator)
+- **Tier 3:** LLM synthesizes final answer from merged, pruned context
+
+**Key Features:**
+- ✅ Parallel tool execution (not sequential)
+- ✅ Vector search via Pinecone for semantic matching
+- ✅ Structured data queries via DuckDB
+- ✅ Mathematical queries via Calculator
+- ✅ Single LLM call (efficient, no hallucination)
 
 ### Key Files
 
