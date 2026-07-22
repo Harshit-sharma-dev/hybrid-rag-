@@ -1,21 +1,40 @@
-# config.py — Simple settings for Hybrid RAG
+# config.py — Sales RAG Configuration
+# Local BM25 + Qwen 7B (CPU)
 import os
 from pathlib import Path
 
-# Base directory (where this config.py lives)
+# ──────────────────────────────────────────────────────────
+# DATA PATHS
+# ──────────────────────────────────────────────────────────
 BASE_DIR = Path(__file__).parent
-DATA_DIR = BASE_DIR.parent / "data"  # Points to New folder/data/
+DATA_PATH = BASE_DIR.parent / "data"
 
-# Paths
-DATA_PATH = DATA_DIR / "C:\\Users\\Harshit Sharma\\OneDrive\\Desktop\\New folder\\data\\financial_data.jsonl"  # Your dataset
+# Sales data files
+SALES_CSV = DATA_PATH / "Financials.csv"
+SALES_JSONL = DATA_PATH / "financial_data.jsonl"
 
-# 🔑 Pinecone settings (get key from https://app.pinecone.io)
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY", "your-pinecone-key-here")
-PINECONE_INDEX = "simple-rag-index"
+# ──────────────────────────────────────────────────────────
+# LOCAL MODEL - Qwen 7B on CPU
+# ──────────────────────────────────────────────────────────
+# No API keys needed - everything runs locally!
+OLLAMA_HOST = "http://localhost:11434"
+OLLAMA_MODEL = "qwen2.5:7b"  # Free, open-source, CPU-optimized
 
-# Embedding model (local, no API needed)
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+# ──────────────────────────────────────────────────────────
+# RAG RETRIEVAL - BM25 (CPU efficient, no embeddings)
+# ──────────────────────────────────────────────────────────
+RETRIEVAL_METHOD = "bm25"  # Sparse retrieval (super fast on CPU)
+BM25_TOP_K = 5  # Number of results to retrieve
+BM25_MIN_SCORE = 0.1  # Minimum relevance threshold
 
-# LLM settings (local Ollama)
-OLLAMA_MODEL = "qwen2.5:7b"  # Better tool calling than 1b models
-OLLAMA_BASE_URL = "http://localhost:11434"
+# ──────────────────────────────────────────────────────────
+# LLM GENERATION SETTINGS
+# ──────────────────────────────────────────────────────────
+GENERATION_TEMPERATURE = 0.3  # Lower = more factual, deterministic
+GENERATION_MAX_TOKENS = 150
+GENERATION_TOP_P = 0.9
+
+# ──────────────────────────────────────────────────────────
+# LOGGING
+# ──────────────────────────────────────────────────────────
+LOG_LEVEL = "INFO"

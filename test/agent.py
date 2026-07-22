@@ -1,43 +1,72 @@
-# agent.py — Orchestrates routing, tool execution, and LLM synthesis
+# agent.py — Simple Sales RAG Agent
+# Pipeline: Route → Retrieve → Generate
 import json
-import re
-import ollama
+import logging
 from .smart_router import route_query
-from .tool_calling import semantic_search, analytical_query, calculate
+from .tool_calling import semantic_search, analytical_query, generate_summary
 import config
 
-def run_query(user_query: str) -> str:
+log = logging.getLogger(__name__)
+
+def run_query(user_query: str) -> dict:
     """
-    Full data flow:
-    1. Route query (code-only, <5ms)
-    2. Execute appropriate tool(s) (deterministic)
-    3. Format context
-    4. Call LLM ONCE for final answer
+    Simple RAG pipeline for sales data queries:
+    1. Route query (search | summary | analysis)
+    2. Retrieve relevant data using BM25
+    3. Generate answer using Qwen 7B
     """
     
-    # ── STEP 1: Fast Routing ──
-    route = route_query(user_query)
-    print(f"🔀 Route: {route}")
+    print(f"\n📝 Query: {user_query}")
     
-    # ── STEP 2: Run Tools Based on Route ──
-    context = {}
+    # ── STEP 1: Route Query ──
+    routing_result = route_query(user_query)
+    intent = routing_result.get("intent", "search")
+    confidence = routing_result.get("confidence", 0.5)
     
-    if route == "math":
-        # Extract math expression from query
-        match = re.search(r'[\d\.\s\+\-\*/\(\)]+', user_query)
-        if match:
-            expr = match.group().strip()
-            # Remove common words that regex might catch
-            expr = re.sub(r'\b(of|plus|minus|times|divided by|percent)\b', '', expr).strip()
-            if any(c in expr for c in '+-*/'):
-                context["calculation"] = calculate(expr)
-            else:
-                context["calculation"] = {"error": "No valid math expression detected"}
-        else:
-            context["calculation"] = {"error": "No numbers found"}
-            
-    if route in ("semantic", "analytical", "hybrid"):
-        context["search"] = semantic_search(user_query, k=5)
+    print(f"🔀 Intent: {intent} (confidence: {confidence:.1%})")
+    
+    # ── STEP 2: Retrieve Context ──
+    if intent == "analysis":
+        # Analytical queries - use DuckDB
+        retrieval_result = analytical_query(user_query)
+        context_type = "analytical"
+    else:
+        # Search/summary - use BM25
+        retrieval_result = semantic_search(user_query, k=5)
+        context_type = "bm25"
+    
+    print(f"📊 Retrieved {len(retrieval_result)} results using {context_type}")
+    
+    # ── STEP 3: Generate Answer ──
+    answer = generate_summary(user_query, retrieval_result)
+    
+    # ── Return Result ──
+    result = {
+        "query": user_query,
+        "intent": intent,
+        "confidence": confidence,
+        "answer": answer,
+        "context_count": len(retrieval_result),
+        "retrieval_method": context_type
+    }
+    
+    print(f"✅ Answer: {answer}\n")
+    
+    return result
+
+
+if __name__ == "__main__":
+    # Test queries
+    test_queries = [
+        "Show me the top sales records",
+        "What was our total revenue?",
+        "How many transactions do we have?"
+    ]
+    
+    for query in test_queries:
+        result = run_query(query)
+        print(f"Result: {json.dumps(result, indent=2)}\n")
+
         
     if route == "analytical":
         context["data"] = analytical_query(user_query)

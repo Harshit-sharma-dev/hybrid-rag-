@@ -1,6 +1,13 @@
+# Local RAG Stack - BM25 + Qwen 7B
+# No external APIs, pure CPU computation
+
+# Core
 ollama
-pinecone-client
-langchain-huggingface
-duckdb
 pandas
-sentence-transformers
+duckdb
+
+# Retrieval - BM25 (sparse, CPU-efficient)
+rank-bm25
+
+# Utilities
+python-dotenv
