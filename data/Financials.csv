@@ -1,4 +1,11 @@
-Segment,Country, Product , Discount Band , Units Sold , Manufacturing Price , Sale Price , Gross Sales , Discounts ,  Sales , COGS , Profit ,Date,Month Number, Month Name ,Year
+dmarket,Mexico, Paseo , None , $974.00 , $10.00 , $15.00 ," $14,610.00 ", $-   ," $14,610.00 "," $9,740.00 "," $4,870.00 ",01/02/2014,2, February ,2014
+Channel Partners,Canada, Paseo , None ," $2,518.00 ", $10.00 , $12.00 ," $30,216.00 ", $-   ," $30,216.00 "," $7,554.00 "," $22,662.00 ",01/06/2014,6, June ,2014
+Government,Germany, Paseo , None ," $1,006.00 ", $10.00 , $350.00 ," $3,52,100.00 ", $-   ," $3,52,100.00 "," $2,61,560.00 "," $90,540.00 ",01/06/2014,6, June ,2014
+Channel Partners,Germany, Paseo , None , $367.00 , $10.00 , $12.00 ," $4,404.00 ", $-   ," $4,404.00 "," $1,101.00 "," $3,303.00 ",01/07/2014,7, July ,2014
+Government,Mexico, Paseo , None , $883.00 , $10.00 , $7.00 ," $6,181.00 ", $-   ," $6,181.00 "," $4,415.00 "," $1,766.00 ",01/08/2014,8, August ,2014
+Midmarket,France, Paseo , None , $549.00 , $10.00 , $15.00 ," $8,235.00 ", $-   ," $8,235.00 "," $5,490.00 "," $2,745.00 ",01/09/2013,9, September ,2013
+Small Business,Mexico, Paseo , None , $788.00 , $10.00 , $300.00 ," $2,36,400.00 ", $-   ," $2,36,400.00 "," $1,97,000.00 "," $39,400.00 ",01/09/2013,9, September ,2013
+MidSegment,Country, Product , Discount Band , Units Sold , Manufacturing Price , Sale Price , Gross Sales , Discounts ,  Sales , COGS , Profit ,Date,Month Number, Month Name ,Year
 Government,Canada, Carretera , None ," $1,618.50 ", $3.00 , $20.00 ," $32,370.00 ", $-   ," $32,370.00 "," $16,185.00 "," $16,185.00 ",01/01/2014,1, January ,2014
 Government,Germany, Carretera , None ," $1,321.00 ", $3.00 , $20.00 ," $26,420.00 ", $-   ," $26,420.00 "," $13,210.00 "," $13,210.00 ",01/01/2014,1, January ,2014
 Midmarket,France, Carretera , None ," $2,178.00 ", $3.00 , $15.00 ," $32,670.00 ", $-   ," $32,670.00 "," $21,780.00 "," $10,890.00 ",01/06/2014,6, June ,2014
@@ -16,14 +23,7 @@ Government,Germany, Montana , None ," $2,146.00 ", $5.00 , $7.00 ," $15,022.00 "
 Enterprise,Canada, Montana , None , $345.00 , $5.00 , $125.00 ," $43,125.00 ", $-   ," $43,125.00 "," $41,400.00 "," $1,725.00 ",01/10/2013,10, October ,2013
 Midmarket,United States of America, Montana , None , $615.00 , $5.00 , $15.00 ," $9,225.00 ", $-   ," $9,225.00 "," $6,150.00 "," $3,075.00 ",01/12/2014,12, December ,2014
 Government,Canada, Paseo , None , $292.00 , $10.00 , $20.00 ," $5,840.00 ", $-   ," $5,840.00 "," $2,920.00 "," $2,920.00 ",01/02/2014,2, February ,2014
-Midmarket,Mexico, Paseo , None , $974.00 , $10.00 , $15.00 ," $14,610.00 ", $-   ," $14,610.00 "," $9,740.00 "," $4,870.00 ",01/02/2014,2, February ,2014
-Channel Partners,Canada, Paseo , None ," $2,518.00 ", $10.00 , $12.00 ," $30,216.00 ", $-   ," $30,216.00 "," $7,554.00 "," $22,662.00 ",01/06/2014,6, June ,2014
-Government,Germany, Paseo , None ," $1,006.00 ", $10.00 , $350.00 ," $3,52,100.00 ", $-   ," $3,52,100.00 "," $2,61,560.00 "," $90,540.00 ",01/06/2014,6, June ,2014
-Channel Partners,Germany, Paseo , None , $367.00 , $10.00 , $12.00 ," $4,404.00 ", $-   ," $4,404.00 "," $1,101.00 "," $3,303.00 ",01/07/2014,7, July ,2014
-Government,Mexico, Paseo , None , $883.00 , $10.00 , $7.00 ," $6,181.00 ", $-   ," $6,181.00 "," $4,415.00 "," $1,766.00 ",01/08/2014,8, August ,2014
-Midmarket,France, Paseo , None , $549.00 , $10.00 , $15.00 ," $8,235.00 ", $-   ," $8,235.00 "," $5,490.00 "," $2,745.00 ",01/09/2013,9, September ,2013
-Small Business,Mexico, Paseo , None , $788.00 , $10.00 , $300.00 ," $2,36,400.00 ", $-   ," $2,36,400.00 "," $1,97,000.00 "," $39,400.00 ",01/09/2013,9, September ,2013
-Midmarket,Mexico, Paseo , None ," $2,472.00 ", $10.00 , $15.00 ," $37,080.00 ", $-   ," $37,080.00 "," $24,720.00 "," $12,360.00 ",01/09/2014,9, September ,2014
+Mimarket,Mexico, Paseo , None ," $2,472.00 ", $10.00 , $15.00 ," $37,080.00 ", $-   ," $37,080.00 "," $24,720.00 "," $12,360.00 ",01/09/2014,9, September ,2014
 Government,United States of America, Paseo , None ," $1,143.00 ", $10.00 , $7.00 ," $8,001.00 ", $-   ," $8,001.00 "," $5,715.00 "," $2,286.00 ",01/10/2014,10, October ,2014
 Government,Canada, Paseo , None ," $1,725.00 ", $10.00 , $350.00 ," $6,03,750.00 ", $-   ," $6,03,750.00 "," $4,48,500.00 "," $1,55,250.00 ",01/11/2013,11, November ,2013
 Channel Partners,United States of America, Paseo , None , $912.00 , $10.00 , $12.00 ," $10,944.00 ", $-   ," $10,944.00 "," $2,736.00 "," $8,208.00 ",01/11/2013,11, November ,2013

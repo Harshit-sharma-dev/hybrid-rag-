@@ -1,0 +1,6 @@
+ollama
+pinecone-client
+langchain-huggingface
+duckdb
+pandas
+sentence-transformers
