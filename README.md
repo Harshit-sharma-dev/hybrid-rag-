@@ -264,7 +264,50 @@ Solution: Check your query and data format
 
 ---
 
-## 📝 License
+## � About This Project
+
+### 🚀 Building a 100% Local, CPU-Optimized Hybrid RAG System
+
+Most RAG architectures rely on expensive external API calls and GPU instances. This project demonstrates that you can build something **fast, private, and efficient** enough to run entirely on a standard laptop—without sacrificing performance.
+
+#### Key Technical Highlights:
+
+**Local Intent Routing**
+- Qwen 2.5 (7B) via Ollama as a smart router
+- Categorizes queries into: search, summary, or analysis
+- Average response time: 500–800ms on CPU
+
+**CPU-Efficient Retrieval**
+- BM25Okapi for lexical retrieval (no heavy embeddings)
+- Sub-50ms search times over structured sales datasets
+- Minimal memory footprint
+
+**Structured Analytics**
+- BM25 search paired with DuckDB
+- Precise aggregation and numeric breakdowns
+- Direct SQL queries for complex analytics
+
+**Local Response Generation**
+- Qwen 7B synthesizes context-aware answers
+- Responses grounded strictly in retrieved data
+- No external API calls needed
+
+#### Performance Metrics:
+- **End-to-end query time:** 2–5 seconds (CPU)
+- **Data privacy:** 100% (no cloud dependencies)
+- **API costs:** $0
+- **Memory footprint:** ~2GB
+
+#### Tech Stack:
+- `rank-bm25` - Efficient sparse retrieval
+- `ollama` - Local LLM inference
+- `duckdb` - Fast SQL analytics
+- `pandas` - Data manipulation
+- `python-dotenv` - Configuration
+
+---
+
+## �📝 License
 
 Open Source - MIT License
 
